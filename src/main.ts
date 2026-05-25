@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
+import * as cookieParser from 'cookie-parser';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -10,8 +11,10 @@ async function bootstrap() {
   app.enableShutdownHooks();
   app.enableCors({
     origin: '*',
-    methods: 'GET,POST,PUT,DELETE,PATCH'
+    methods: 'GET,POST,PUT,DELETE,PATCH',
+    credentials: true
   });
+  app.use(cookieParser());
   
   await app.listen(3000);
 }
