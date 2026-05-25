@@ -1,6 +1,6 @@
 import { ConflictException, Injectable } from '@nestjs/common';
 import { Author } from '@prisma/client';
-import { PrismaService } from 'src/shared/services/prisma.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { UpdateAuthorDTO } from './dtos/update-author.dto';
 
 @Injectable()
