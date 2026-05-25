@@ -15,7 +15,10 @@ export class BooksService {
 
     public getById(id: Book['id']): Promise<Book | null> {
         return this.prismaService.book.findUnique({
-            where: {id}
+            where: {id},
+            include: {
+                author: true
+            }
         });
     }
 
