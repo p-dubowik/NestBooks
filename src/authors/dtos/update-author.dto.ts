@@ -1,13 +1,4 @@
-import { IsNotEmpty, IsString, Length } from "class-validator";
+import { PartialType } from "@nestjs/mapped-types";
+import { CreateAuthorDTO } from "./create-author.dto";
 
-export class UpdateAuthorDTO {
-    @IsNotEmpty()
-    @IsString()
-    @Length(3, 100)
-    name: string;
-
-    @IsNotEmpty()
-    @IsString()
-    @Length(1, 3)
-    country: string;
-}
+export class UpdateAuthorDTO extends PartialType(CreateAuthorDTO) {}
