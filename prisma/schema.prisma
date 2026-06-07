@@ -15,11 +15,22 @@ enum Role {
   ADMIN
 }
 
+model UserOnBooks {
+  book Book @relation(fields: [bookId], references: [id])
+  bookId String
+  user User @relation(fields: [userId], references: [id])
+  userId String
+
+  @@id([bookId, userId])
+}
+
 model User {
   id String @id @default(uuid())
   email String @unique
   role Role @default(USER)
   password Password?
+
+  books UserOnBooks[]
 }
 
 model Password {
@@ -48,4 +59,6 @@ model Book {
 
   authorId String
   author Author @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  users UserOnBooks[]
 }
